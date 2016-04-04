@@ -1,24 +1,26 @@
 package com.scrumtrek.simplestore;
 
-public class Movie {
-	private String m_Title;
-	private PriceCodes m_PriceCode;
+import com.scrumtrek.simplestore.prices.IPriceCode;
 
-	public Movie(String title, PriceCodes priceCode) {
-		m_Title = title;
-		m_PriceCode = priceCode;
+public class Movie {
+	private String title;
+	private IPriceCode priceCode;
+
+	public Movie(String title, IPriceCode priceCode) {
+		this.title = title;
+		this.priceCode = priceCode;
 	}
 
-	public PriceCodes getPriceCode()	{
-		return m_PriceCode;
+	public IPriceCode getPriceCode()	{
+		return priceCode;
 	}
 	
-	public void setPriceCode(PriceCodes value) {
-		m_PriceCode = value;
+	public void setPriceCode(IPriceCode value) {
+		priceCode = value;
 	}
 
 	public String getTitle() {
-		return m_Title;
+		return title;
 	}
 }
 

@@ -1,66 +1,41 @@
 package com.scrumtrek.simplestore;
 
+import com.scrumtrek.simplestore.reports.AbstractReport;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
-	private String m_Name;
-	private List<Rental> m_Rentals = new ArrayList<Rental>();
+	private String name;
+	private List<Rental> rentals = new ArrayList<Rental>();
 
 	public Customer(String name) {
-		m_Name = name;
+		this.name = name;
 	}
 
 	public String getName() {
-		return m_Name;
+		return name;
 	}
 
 
 	public void addRental(Rental arg){
-		m_Rentals.add(arg);
+		rentals.add(arg);
 	}
 
 	public String Statement()
 	{
 		double totalAmount = 0;
 		int frequentRenterPoints = 0;
-				
-		String result = "Rental record for " + m_Name + "\n";
+
+        //AbstractReport report = new AbstractReport();
+
+		String result = "Rental record for " + name + "\n";
 		
-		for(Rental each: m_Rentals) {
-			double thisAmount = 0;
-			
-			// Determine amounts for each line
-			switch(each.getMovie().getPriceCode()) {
-				case Regular:
-					thisAmount += 2;
-					if (each.getDaysRented() > 2)
-					{
-						thisAmount += (each.getDaysRented() - 2) * 1.5;
-					}
-					break;
-	
-				case NewRelease:
-					thisAmount += each.getDaysRented() * 3;
-					break;
-	
-				case Childrens:
-					thisAmount += 1.5;
-					if (each.getDaysRented() > 3)
-					{
-						thisAmount = (each.getDaysRented() - 3) * 1.5;
-					}
-					break;
-			}
+		for(Rental each: rentals) {
+			double thisAmount = each.getAmount();
 
 			// Add frequent renter points
-			frequentRenterPoints++;
-
-			// Add bonus for a two-day new-release rental
-			if ((each.getMovie().getPriceCode() == PriceCodes.NewRelease) && (each.getDaysRented() > 1))
-			{
-				frequentRenterPoints ++;
-			}
+			frequentRenterPoints+=1+each.getFrequentPoints();
 
 			// Show figures for this rental
 			result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount + "\n";
