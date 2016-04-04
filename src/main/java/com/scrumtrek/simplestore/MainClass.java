@@ -1,11 +1,15 @@
 package com.scrumtrek.simplestore;
 
-class MainClass {
-	 static void Main(String[] args) {
+import com.scrumtrek.simplestore.prices.ChildrensPriceCode;
+import com.scrumtrek.simplestore.prices.NewReleasePriceCode;
+import com.scrumtrek.simplestore.prices.RegularPriceCode;
+
+public class MainClass {
+	 public static void main(String[] args) {
 		// Create movies
-		Movie movCinderella = new Movie("Cinderella", PriceCodes.Childrens);
-		Movie movStarWars = new Movie("Star Wars", PriceCodes.Regular);
-		Movie movGladiator = new Movie("Gladiator", PriceCodes.NewRelease);
+		Movie movCinderella = new Movie("Cinderella", new ChildrensPriceCode());
+		Movie movStarWars = new Movie("Star Wars", new RegularPriceCode());
+		Movie movGladiator = new Movie("Gladiator", new NewReleasePriceCode());
 
 		// Create customers
 		Customer custMickeyMouse = new Customer("Mickey Mouse");
