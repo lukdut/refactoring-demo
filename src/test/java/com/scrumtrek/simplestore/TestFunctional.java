@@ -1,9 +1,10 @@
 package com.scrumtrek.simplestore;
 
-import com.scrumtrek.simplestore.Customer;
-import com.scrumtrek.simplestore.Movie;
-import com.scrumtrek.simplestore.PriceCodes;
-import com.scrumtrek.simplestore.Rental;
+import com.scrumtrek.simplestore.prices.ChildrensPriceCode;
+import com.scrumtrek.simplestore.prices.NewReleasePriceCode;
+import com.scrumtrek.simplestore.prices.RegularPriceCode;
+import com.scrumtrek.simplestore.reports.BaseReport;
+import com.scrumtrek.simplestore.reports.JsonReport;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,9 +21,9 @@ public class TestFunctional {
     @BeforeClass
     public static void init() {
         // Create movies
-        Movie movCinderella = new Movie("Cinderella", PriceCodes.Childrens);
-        Movie movStarWars = new Movie("Star Wars", PriceCodes.Regular);
-        Movie movGladiator = new Movie("Gladiator", PriceCodes.NewRelease);
+        Movie movCinderella = new Movie("Cinderella", new ChildrensPriceCode());
+        Movie movStarWars = new Movie("Star Wars", new RegularPriceCode());
+        Movie movGladiator = new Movie("Gladiator", new NewReleasePriceCode());
 
         // Create customers
         Customer custMickeyMouse = new Customer("Mickey Mouse");
@@ -39,9 +40,10 @@ public class TestFunctional {
         custMickeyMouse.addRental(rental2);
         custMickeyMouse.addRental(rental3);
 
-        statement = custMickeyMouse.Statement();
+        statement = custMickeyMouse.statement(new BaseReport());
         lines = statement.split("\n");
-//        System.out.printf(statement);
+        System.out.printf(statement);
+
     }
 
     @Test

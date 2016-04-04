@@ -1,24 +1,36 @@
 package com.scrumtrek.simplestore.reports;
 
+import com.scrumtrek.simplestore.Rental;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by USER on 04.04.2016.
  */
-public class AbstractReport {
-    private String headerData;
-    private List<String> bodyData;
-    private String footerDate;
+public abstract class AbstractReport {
+    public static final String NAME = "NAME";
 
-    private String makeHeader(){
-        return "Rental record for " + headerData + "\n";
-    };
+    protected Map<String,String> data;
+    protected List<Rental> rentals;
+    protected double fullRentalAmount;
+    protected int frequentPoints;
 
-    public void makeBodyPart(){
-
+    public AbstractReport(){
+        data = new HashMap<>();
+        rentals = new ArrayList<>();
     }
 
-    public void makeFooter(){
+    public abstract String getReport();
 
-    };
+    public void putDataIntoTemplate(String field, String data){
+        this.data.put(field,data);
+    }
+
+    public void putRentalsIntoTemplate(List<Rental> rentals){
+        this.rentals.addAll(rentals);
+    }
+
 }
