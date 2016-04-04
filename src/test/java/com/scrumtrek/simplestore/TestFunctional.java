@@ -1,4 +1,4 @@
-package com.scrumtrek.simplestore.tests;
+package com.scrumtrek.simplestore;
 
 import com.scrumtrek.simplestore.Customer;
 import com.scrumtrek.simplestore.Movie;
@@ -12,7 +12,8 @@ import static org.junit.Assert.*;
 /**
  * Created by USER on 04.04.2016.
  */
-public class FunctionalTest {
+
+public class TestFunctional {
     private static String statement;
     private static String[] lines;
 
@@ -40,7 +41,7 @@ public class FunctionalTest {
 
         statement = custMickeyMouse.Statement();
         lines = statement.split("\n");
-        System.out.printf(statement);
+//        System.out.printf(statement);
     }
 
     @Test
