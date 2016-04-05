@@ -26,8 +26,7 @@ public class JsonReport extends AbstractReport {
             reportBuilder.append(" },\n");
         }
 
-        reportBuilder.append(" fullAmount:").append(fullRentalAmount).append(",\n");
-        reportBuilder.append(" frequentPoint:").append(frequentPoints).append("\n");
+        reportBuilder.append(" fullAmount:").append(fullRentalAmount).append("\n");
         reportBuilder.append("}");
 
         return reportBuilder.toString();

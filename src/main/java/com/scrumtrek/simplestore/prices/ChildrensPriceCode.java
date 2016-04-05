@@ -14,8 +14,4 @@ public class ChildrensPriceCode implements IPriceCode{
         return amount;
     }
 
-    @Override
-    public int getFrequentPoints(int daysRented) {
-        return 0;
-    }
 }

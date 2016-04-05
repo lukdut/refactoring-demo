@@ -30,10 +30,7 @@ public class BaseReport extends AbstractReport {
 
         reportBuilder.append("Amount owed is ")
                 .append(fullRentalAmount)
-                .append("\n")
-                .append("You earned ")
-                .append(frequentPoints)
-                .append(" frequent renter points.");
+                .append("\n");
 
         return reportBuilder.toString();
     }

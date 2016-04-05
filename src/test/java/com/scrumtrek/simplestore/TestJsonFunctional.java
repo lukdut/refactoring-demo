@@ -3,18 +3,17 @@ package com.scrumtrek.simplestore;
 import com.scrumtrek.simplestore.prices.ChildrensPriceCode;
 import com.scrumtrek.simplestore.prices.NewReleasePriceCode;
 import com.scrumtrek.simplestore.prices.RegularPriceCode;
-import com.scrumtrek.simplestore.reports.BaseReport;
 import com.scrumtrek.simplestore.reports.JsonReport;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by USER on 04.04.2016.
  */
 
-public class TestFunctional {
+public class TestJsonFunctional {
     private static String statement;
     private static String[] lines;
 
@@ -25,7 +24,7 @@ public class TestFunctional {
         Movie movStarWars = new Movie("Star Wars", new RegularPriceCode());
         Movie movGladiator = new Movie("Gladiator", new NewReleasePriceCode());
 
-        // Create customer
+        // Create customers
         Customer custMickeyMouse = new Customer("Mickey Mouse");
 
         // Create rentals
@@ -38,40 +37,28 @@ public class TestFunctional {
         custMickeyMouse.addRental(rental2);
         custMickeyMouse.addRental(rental3);
 
-        statement = new BaseReport(custMickeyMouse).getReport();
+        statement = new JsonReport(custMickeyMouse).getReport();
         lines = statement.split("\n");
-        System.out.println(statement);
-        System.out.println(new JsonReport(custMickeyMouse).getReport());
-
     }
 
     @Test
     public void testWholeReport() {
-        assertEquals(statement, "Rental record for Mickey Mouse\n" +
-                "\tCinderella\t3.0\n" +
-                "\tStar Wars\t6.5\n" +
-                "\tGladiator\t15.0\n" +
-                "Amount owed is 24.5\n");
-    }
-
-    @Test
-    public void testCinderella() {
-        assertTrue(lines[1].contains("Cinderella\t3.0"));
-    }
-
-    @Test
-    public void testStarWars() {
-        assertTrue(lines[2].contains("Star Wars\t6.5"));
-    }
-
-    @Test
-    public void testGladiator() {
-        assertTrue(lines[3].contains("Gladiator\t15.0"));
-    }
-
-    @Test
-    public void testOwedAmount() {
-        assertTrue(lines[4].contains("Amount owed is 24.5"));
+        assertEquals(statement, "Customer {\n" +
+                " name:Mickey Mouse,\n" +
+                " Rental {\n" +
+                "  title:Cinderella,\n" +
+                "  rentAmount:3.0,\n" +
+                " },\n" +
+                " Rental {\n" +
+                "  title:Star Wars,\n" +
+                "  rentAmount:6.5,\n" +
+                " },\n" +
+                " Rental {\n" +
+                "  title:Gladiator,\n" +
+                "  rentAmount:15.0,\n" +
+                " },\n" +
+                " fullAmount:24.5\n" +
+                "}");
     }
 
 }

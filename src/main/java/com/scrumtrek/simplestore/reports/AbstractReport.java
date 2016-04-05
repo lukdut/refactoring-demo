@@ -8,7 +8,6 @@ import com.scrumtrek.simplestore.Rental;
  */
 public abstract class AbstractReport {
     protected double fullRentalAmount;
-    protected int frequentPoints;
     protected Customer customer;
 
     public AbstractReport(Customer customer){
@@ -18,10 +17,8 @@ public abstract class AbstractReport {
     //TODO аналитическая функция, нужно подумать куда деть
     protected void countFullRentalAmountAndFreqPoints(){
         fullRentalAmount = 0;
-        frequentPoints = 0;
         for(Rental rental : customer.getRentals()) {
             fullRentalAmount += rental.getAmount();
-            frequentPoints += 1 + rental.getFrequentPoints();
         }
     }
 
