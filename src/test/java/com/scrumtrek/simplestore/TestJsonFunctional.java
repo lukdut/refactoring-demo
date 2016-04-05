@@ -63,11 +63,4 @@ public class TestJsonFunctional {
                 "}");
     }
 
-    @Test
-    public void testSimpleReport() {
-        assertEquals(statement, "Customer {\n" +
-                " name:Mickey Mouse,\n" +
-                " fullAmount:24.5\n" +
-                "}");
-    }
 }
