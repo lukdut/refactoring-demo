@@ -12,20 +12,28 @@ public class JsonReport extends AbstractReport {
     }
 
     @Override
-    public String getReport() {
-        countFullRentalAmountAndFreqPoints();
-
+    protected String getHeader() {
         StringBuilder reportBuilder = new StringBuilder();
         reportBuilder.append("Customer {\n");
         reportBuilder.append(" name:").append(customer.getName()).append(",\n");
+        return reportBuilder.toString();
+    }
 
+    @Override
+    protected String getBody() {
+        StringBuilder reportBuilder = new StringBuilder();
         for(Rental rental : customer.getRentals()){
             reportBuilder.append(" Rental {\n");
             reportBuilder.append("  title:").append(rental.getMovie().getTitle()).append(",\n");
             reportBuilder.append("  rentAmount:").append(rental.getAmount()).append(",\n");
             reportBuilder.append(" },\n");
         }
+        return reportBuilder.toString();
+    }
 
+    @Override
+    protected String getFooter() {
+        StringBuilder reportBuilder = new StringBuilder();
         reportBuilder.append(" fullAmount:").append(fullRentalAmount).append("\n");
         reportBuilder.append("}");
 

@@ -4,7 +4,6 @@ import com.scrumtrek.simplestore.prices.ChildrensPriceCode;
 import com.scrumtrek.simplestore.prices.NewReleasePriceCode;
 import com.scrumtrek.simplestore.prices.RegularPriceCode;
 import com.scrumtrek.simplestore.reports.BaseReport;
-import com.scrumtrek.simplestore.reports.JsonReport;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -15,7 +14,8 @@ import static org.junit.Assert.*;
  */
 
 public class TestFunctional {
-    private static String statement;
+    private static String detailReport;
+    private static String simpleReport;
     private static String[] lines;
 
     @BeforeClass
@@ -38,21 +38,30 @@ public class TestFunctional {
         custMickeyMouse.addRental(rental2);
         custMickeyMouse.addRental(rental3);
 
-        statement = new BaseReport(custMickeyMouse).getReport();
-        lines = statement.split("\n");
-        System.out.println(statement);
-        System.out.println(new JsonReport(custMickeyMouse).getReport());
+        detailReport = new BaseReport(custMickeyMouse).getDetailReport();
+        simpleReport = new BaseReport(custMickeyMouse).getSimpleReport();
+
+        lines = detailReport.split("\n");
+        System.out.println(detailReport);
+        System.out.println(simpleReport);
 
     }
 
     @Test
-    public void testWholeReport() {
-        assertEquals(statement, "Rental record for Mickey Mouse\n" +
+    public void testDetailReport() {
+        assertEquals(detailReport, "Rental record for Mickey Mouse\n" +
                 "\tCinderella\t3.0\n" +
                 "\tStar Wars\t6.5\n" +
                 "\tGladiator\t15.0\n" +
                 "Amount owed is 24.5\n");
     }
+
+    @Test
+    public void testSimpleReport() {
+        assertEquals(simpleReport, "Rental record for Mickey Mouse\n" +
+                "Amount owed is 24.5\n");
+    }
+
 
     @Test
     public void testCinderella() {

@@ -19,5 +19,17 @@ public abstract class AbstractReport {
         }
     }
 
-    public abstract String getReport();
+    public String getSimpleReport(){
+        countFullRentalAmountAndFreqPoints();
+        return getHeader()+getFooter();
+    }
+
+    public String getDetailReport(){
+        countFullRentalAmountAndFreqPoints();
+        return getHeader()+getBody()+getFooter();
+    }
+
+    protected abstract String getHeader();
+    protected abstract String getBody();
+    protected abstract String getFooter();
 }

@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TestJsonFunctional {
     private static String statement;
-    private static String[] lines;
+    private static String simpleStatement;
 
     @BeforeClass
     public static void init() {
@@ -37,12 +37,14 @@ public class TestJsonFunctional {
         custMickeyMouse.addRental(rental2);
         custMickeyMouse.addRental(rental3);
 
-        statement = new JsonReport(custMickeyMouse).getReport();
-        lines = statement.split("\n");
+        statement = new JsonReport(custMickeyMouse).getDetailReport();
+        simpleStatement = new JsonReport(custMickeyMouse).getSimpleReport();
+        System.out.println(statement);
+        System.out.println(simpleStatement);
     }
 
     @Test
-    public void testWholeReport() {
+    public void testDetailReport() {
         assertEquals(statement, "Customer {\n" +
                 " name:Mickey Mouse,\n" +
                 " Rental {\n" +
@@ -61,4 +63,11 @@ public class TestJsonFunctional {
                 "}");
     }
 
+    @Test
+    public void testSimpleReport() {
+        assertEquals(statement, "Customer {\n" +
+                " name:Mickey Mouse,\n" +
+                " fullAmount:24.5\n" +
+                "}");
+    }
 }

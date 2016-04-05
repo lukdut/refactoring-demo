@@ -13,13 +13,26 @@ public class BaseReport extends AbstractReport {
     }
 
     @Override
-    public String getReport() {
-        countFullRentalAmountAndFreqPoints();
+    protected String getHeader() {
         StringBuilder reportBuilder = new StringBuilder();
         reportBuilder.append("Rental record for ")
                 .append(customer.getName()).append("\n");
+        return reportBuilder.toString();
+    }
 
-        for(Rental rental : customer.getRentals()){
+    @Override
+    protected String getFooter() {
+        StringBuilder reportBuilder = new StringBuilder();
+        reportBuilder.append("Amount owed is ")
+                .append(fullRentalAmount)
+                .append("\n");
+        return reportBuilder.toString();
+    }
+
+    @Override
+    protected String getBody() {
+        StringBuilder reportBuilder = new StringBuilder();
+        for (Rental rental : customer.getRentals()) {
             double rentalAmount = rental.getAmount();
             reportBuilder.append("\t")
                     .append(rental.getMovie().getTitle())//add move title to report
@@ -28,11 +41,8 @@ public class BaseReport extends AbstractReport {
                     .append("\n");
         }
 
-        reportBuilder.append("Amount owed is ")
-                .append(fullRentalAmount)
-                .append("\n");
-
         return reportBuilder.toString();
     }
+
 
 }
