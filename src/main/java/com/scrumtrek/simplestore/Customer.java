@@ -11,9 +11,15 @@ public class Customer {
     private CustomerStateBuilder stateBuilder = new CustomerStateBuilder();
     private String name;
     private List<Rental> rentals = new ArrayList<>();
+    private double discount = 0.0;
 
     public Customer(String name) {
         this.name = name;
+    }
+
+    public Customer(String name, double discount) {
+        this.name = name;
+        this.discount = discount;
     }
 
     public List<Rental> getRentals() {
@@ -35,9 +41,7 @@ public class Customer {
      *
      * @return
      */
-    public String statement() {
-
-
+    public String statementDetail() {
         CustomerState state = stateBuilder.getCustomerState(this);
 
         String result = "Rental record for " + name + "\n";
@@ -56,7 +60,7 @@ public class Customer {
      *
      * @return
      */
-    public String statementJson() {
+    public String statementJsonDetail() {
         CustomerState state = stateBuilder.getCustomerState(this);
         return "{" +
                 "customerName:'" + this.getName() + "'," +
@@ -72,6 +76,14 @@ public class Customer {
         }
         result = result.substring(0, result.length() - 1);
         return "[" + result + "]";
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 }
 

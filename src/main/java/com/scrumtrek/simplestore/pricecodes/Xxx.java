@@ -13,7 +13,7 @@ public class Xxx extends PriceCode {
     public double getAmount(int daysRented) {
         double amount = 2;
         if (daysRented > 4) {
-            amount += (daysRented - 4) * 1.5;
+            amount += (daysRented - 2) * 1.5;
         }
         return amount;
     }

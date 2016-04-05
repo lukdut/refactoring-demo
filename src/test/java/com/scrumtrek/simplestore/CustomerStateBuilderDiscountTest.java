@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by serge on 04.04.2016.
  */
-public class CustomerStateBuilderTest {
+public class CustomerStateBuilderDiscountTest {
 
 
     Customer custMickeyMouse;
@@ -23,7 +23,7 @@ public class CustomerStateBuilderTest {
         Movie movGladiator = new Movie("Gladiator", new NewRelease());
 
         // Create customers
-        custMickeyMouse = new Customer("Mickey Mouse");
+        custMickeyMouse = new Customer("Mickey Mouse",10);
 
         // Create rentals
         Rental rental1 = new Rental(5);
@@ -43,7 +43,8 @@ public class CustomerStateBuilderTest {
     public void getCustomerState() throws Exception {
         CustomerStateBuilder builder = new CustomerStateBuilder();
         CustomerState state = builder.getCustomerState(custMickeyMouse);
-        assertEquals(62.0, state.getTotalAmount(), 0);
+        //62.0 without discount - 6.2 (10% discount) = 55.8
+        assertEquals(55.8, state.getTotalAmount(), 0);
     }
 
 }

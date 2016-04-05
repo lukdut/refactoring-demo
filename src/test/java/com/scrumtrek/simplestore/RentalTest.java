@@ -11,10 +11,11 @@ import static org.junit.Assert.assertEquals;
 public class RentalTest {
     @Test
     public void ConstructorShouldProperInitialize() {
-        Rental r = new Rental(new Movie("Movie1", new Children()), 5);
+        Rental r = new Rental(5);
+        r.addMovieToRental(new Movie("Movie1", new Children()));
 
         assertEquals(5, r.getDaysRented());
-        assertEquals("Children", r.getMovie().getPriceCode().getName());
-        assertEquals("Movie1", r.getMovie().getTitle());
+        assertEquals("Children", r.getMovieList().get(0).getPriceCode().getName());
+        assertEquals("Movie1", r.getMovieList().get(0).getTitle());
     }
 }

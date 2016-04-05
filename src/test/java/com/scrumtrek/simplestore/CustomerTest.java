@@ -23,9 +23,12 @@ public class CustomerTest {
         custMickeyMouse = new Customer("Mickey Mouse");
 
         // Create rentals
-        Rental rental1 = new Rental(movCinderella, 5);
-        Rental rental2 = new Rental(movStarWars, 10);
-        Rental rental3 = new Rental(movGladiator, 15);
+        Rental rental1 = new Rental(5);
+        rental1.addMovieToRental(movCinderella);
+        Rental rental2 = new Rental(10);
+        rental2.addMovieToRental(movStarWars);
+        Rental rental3 = new Rental(15);
+        rental3.addMovieToRental(movGladiator);
 
         // Assign rentals to customers
         custMickeyMouse.addRental(rental1);
@@ -40,8 +43,8 @@ public class CustomerTest {
 
     @Test
     public void testTextReport() {
-        String statement = custMickeyMouse.statement();
-
+        String statement = custMickeyMouse.statementDetail();
+        System.out.println(statement);
         assertEquals("Rental record for Mickey Mouse\n" +
                 "\tCinderella\t3.0\n" +
                 "\tStar Wars\t14.0\n" +
@@ -51,9 +54,9 @@ public class CustomerTest {
 
     @Test
     public void testJsonReport() {
-        String statement = custMickeyMouse.statementJson();
+        String statement = custMickeyMouse.statementJsonDetail();
 
-        System.out.print(statement);
+        System.out.println(statement);
         assertEquals("{customerName:'Mickey Mouse',totalAmount:'62.0',[{movieName:'Cinderella', amount:'3.0'},{movieName:'Star Wars', amount:'14.0'},{movieName:'Gladiator', amount:'45.0'}]}", statement);
     }
 

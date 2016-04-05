@@ -19,7 +19,7 @@ public class XxxTest {
     public void getAmountOnFiveDays() throws Exception {
         Xxx ch = new Xxx();
         double amount = ch.getAmount(5);
-        assertEquals(3.5, amount, 0);
+        assertEquals(6.5, amount, 0);
     }
 
     @Test

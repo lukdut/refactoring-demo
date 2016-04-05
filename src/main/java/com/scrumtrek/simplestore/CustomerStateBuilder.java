@@ -11,14 +11,19 @@ public class CustomerStateBuilder {
         double totalAmount = 0;
 
         for (Rental rental : customer.getRentals()) {
-            double thisAmount = 0;
+            for(Movie movie : rental.getMovieList()){
+                double thisAmount = 0;
 
-            thisAmount += rental.getMovie().getPriceCode().getAmount(rental.getDaysRented());
+                thisAmount += movie.getPriceCode().getAmount(rental.getDaysRented());
 
-            totalAmount += thisAmount;
-            result.addMovieStates(new CustomerMovieState(rental.getMovie(), thisAmount));
+                totalAmount += thisAmount;
+                result.addMovieStates(new CustomerMovieState(movie, thisAmount));
+            }
         }
-        result.setTotalAmount(totalAmount);
+
+        double discountAmount = (totalAmount/100.0)*customer.getDiscount();
+
+        result.setTotalAmount(totalAmount-discountAmount);
 
         return result;
     }
