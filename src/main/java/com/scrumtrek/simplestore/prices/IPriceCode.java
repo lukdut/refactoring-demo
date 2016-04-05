@@ -1,8 +1,13 @@
 package com.scrumtrek.simplestore.prices;
 
 /**
- * Created by USER on 04.04.2016.
+ * Interface presents price calculation rules
  */
 public interface IPriceCode {
+    /**
+     * calculates amount
+     * @param daysRented
+     * @return rent amount depends on realization
+     */
     double getRentAmount(int daysRented);
 }

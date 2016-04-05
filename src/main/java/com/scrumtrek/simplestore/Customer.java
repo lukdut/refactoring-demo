@@ -3,6 +3,9 @@ package com.scrumtrek.simplestore;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Customer holds his name and all rentals which he made
+ */
 public class Customer {
 	private String name;
 	private List<Rental> rentals = new ArrayList<Rental>();

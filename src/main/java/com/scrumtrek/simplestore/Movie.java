@@ -2,6 +2,10 @@ package com.scrumtrek.simplestore;
 
 import com.scrumtrek.simplestore.prices.IPriceCode;
 
+/**
+ * Movie has name and contains information
+ * about price politics
+ */
 public class Movie {
 	private String title;
 	private IPriceCode priceCode;

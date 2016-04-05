@@ -14,7 +14,7 @@ public abstract class AbstractReport {
       this.customer = customer;
     }
 
-    //TODO аналитическая функция, нужно подумать куда деть
+
     protected void countFullRentalAmountAndFreqPoints(){
         fullRentalAmount = 0;
         for(Rental rental : customer.getRentals()) {

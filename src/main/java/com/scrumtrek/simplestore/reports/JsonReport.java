@@ -4,7 +4,7 @@ import com.scrumtrek.simplestore.Customer;
 import com.scrumtrek.simplestore.Rental;
 
 /**
- * Created by USER on 04.04.2016.
+ * Generates report in JSON format
  */
 public class JsonReport extends AbstractReport {
     public JsonReport(Customer customer) {
