@@ -5,7 +5,7 @@ package com.scrumtrek.simplestore.prices;
  */
 public class RegularPriceCode implements IPriceCode {
     protected double BASE_AMOUNT = 2.0;
-    protected static double DAYS_THRESHOLD = 2;
+    protected double DAYS_THRESHOLD = 2;
 
     @Override
     public double getRentAmount(int daysRented) {

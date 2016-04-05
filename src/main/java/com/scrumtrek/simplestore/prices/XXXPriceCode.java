@@ -9,7 +9,7 @@ public class XXXPriceCode extends RegularPriceCode {
      * после достижения которого начинает учитываться
      * коэффициент
      */
-    static {
+    {
         DAYS_THRESHOLD = 4;
     }
 }
