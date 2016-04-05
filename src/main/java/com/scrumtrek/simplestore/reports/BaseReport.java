@@ -1,5 +1,6 @@
 package com.scrumtrek.simplestore.reports;
 
+import com.scrumtrek.simplestore.Customer;
 import com.scrumtrek.simplestore.Rental;
 
 /**
@@ -7,20 +8,19 @@ import com.scrumtrek.simplestore.Rental;
  */
 public class BaseReport extends AbstractReport {
 
+    public BaseReport(Customer customer) {
+        super(customer);
+    }
+
     @Override
     public String getReport() {
+        countFullRentalAmountAndFreqPoints();
         StringBuilder reportBuilder = new StringBuilder();
-        fullRentalAmount = 0;
-        frequentPoints = 0;
-
         reportBuilder.append("Rental record for ")
-                .append(data.get(AbstractReport.NAME)).append("\n");
+                .append(customer.getName()).append("\n");
 
-        for(Rental rental : rentals){
+        for(Rental rental : customer.getRentals()){
             double rentalAmount = rental.getAmount();
-            fullRentalAmount+= rentalAmount;
-            frequentPoints+=1+rental.getFrequentPoints();
-
             reportBuilder.append("\t")
                     .append(rental.getMovie().getTitle())//add move title to report
                     .append("\t")

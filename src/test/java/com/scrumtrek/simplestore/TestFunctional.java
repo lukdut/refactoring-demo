@@ -40,9 +40,10 @@ public class TestFunctional {
         custMickeyMouse.addRental(rental2);
         custMickeyMouse.addRental(rental3);
 
-        statement = custMickeyMouse.statement(new BaseReport());
+        statement = new BaseReport(custMickeyMouse).getReport();
         lines = statement.split("\n");
-        System.out.printf(statement);
+        System.out.println(statement);
+        System.out.println(new JsonReport(custMickeyMouse).getReport());
 
     }
 
