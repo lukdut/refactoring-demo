@@ -25,10 +25,8 @@ public class TestFunctional {
         Movie movStarWars = new Movie("Star Wars", new RegularPriceCode());
         Movie movGladiator = new Movie("Gladiator", new NewReleasePriceCode());
 
-        // Create customers
+        // Create customer
         Customer custMickeyMouse = new Customer("Mickey Mouse");
-        Customer custDonaldDuck = new Customer("Donald Duck");
-        Customer custMinnieMouse = new Customer("Minnie Mouse");
 
         // Create rentals
         Rental rental1 = new Rental(movCinderella, 5);
