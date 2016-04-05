@@ -1,8 +1,5 @@
 package com.scrumtrek.simplestore.prices;
 
-/**
- * Interface presents price calculation rules
- */
 public interface IPriceCode {
     /**
      * calculates amount

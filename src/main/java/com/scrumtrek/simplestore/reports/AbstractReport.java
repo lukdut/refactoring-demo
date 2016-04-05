@@ -3,9 +3,6 @@ package com.scrumtrek.simplestore.reports;
 import com.scrumtrek.simplestore.Customer;
 import com.scrumtrek.simplestore.Rental;
 
-/**
- * Created by USER on 04.04.2016.
- */
 public abstract class AbstractReport {
     protected double fullRentalAmount;
     protected Customer customer;
