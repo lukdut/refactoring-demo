@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by USER on 04.04.2016.
@@ -63,4 +64,11 @@ public class TestJsonFunctional {
                 "}");
     }
 
+    @Test
+    public void testSimpleReport(){
+        assertTrue(simpleStatement.contains("Customer {\n" +
+                " name:Mickey Mouse,\n" +
+                " fullAmount:24.5\n" +
+                "}"));
+    }
 }
