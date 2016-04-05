@@ -42,22 +42,17 @@ public class CustomerTest {
     }
 
     @Test
-    public void testTextReport() {
-        String statement = custMickeyMouse.statementDetail();
-        System.out.println(statement);
-        assertEquals("Rental record for Mickey Mouse\n" +
-                "\tCinderella\t3.0\n" +
-                "\tStar Wars\t14.0\n" +
-                "\tGladiator\t45.0\n" +
-                "Amount owed is 62.0\n", statement);
+    public void testTextReportSimple() {
+        ReportBuilder reportBuilder = new ReportBuilder(custMickeyMouse);
+        assertEquals("Rental record for Mickey Mouse\n"+
+                "Amount owed is 62.0\n", reportBuilder.statementSimple());
     }
 
-    @Test
-    public void testJsonReport() {
-        String statement = custMickeyMouse.statementJsonDetail();
 
-        System.out.println(statement);
-        assertEquals("{customerName:'Mickey Mouse',totalAmount:'62.0',[{movieName:'Cinderella', amount:'3.0'},{movieName:'Star Wars', amount:'14.0'},{movieName:'Gladiator', amount:'45.0'}]}", statement);
+    @Test
+    public void testJsonReportSimple() {
+        ReportBuilder reportBuilder = new ReportBuilder(custMickeyMouse);
+        assertEquals("{customerName:'Mickey Mouse',totalAmount:'62.0'}", reportBuilder.statementJsonSimple());
     }
 
     @Test

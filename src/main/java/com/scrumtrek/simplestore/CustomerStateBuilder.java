@@ -11,20 +11,20 @@ public class CustomerStateBuilder {
         double totalAmount = 0;
 
         for (Rental rental : customer.getRentals()) {
-            for(Movie movie : rental.getMovieList()){
-                double thisAmount = 0;
-
-                thisAmount += movie.getPriceCode().getAmount(rental.getDaysRented());
-
-                totalAmount += thisAmount;
-                result.addMovieStates(new CustomerMovieState(movie, thisAmount));
-            }
+            totalAmount+=getRentalAmount(rental);
         }
 
         double discountAmount = (totalAmount/100.0)*customer.getDiscount();
-
         result.setTotalAmount(totalAmount-discountAmount);
 
         return result;
+    }
+
+    public double getRentalAmount(Rental rental){
+        double rentalAmount = 0;
+        for(Movie movie : rental.getMovieList()){
+            rentalAmount += movie.getPriceCode().getAmount(rental.getDaysRented());
+        }
+        return rentalAmount;
     }
 }
